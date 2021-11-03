@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Studi Kasus 1 Ricky Supriyanto</title>
 
     <!-- Custom fonts for this template-->
     <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,56 +40,17 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <!-- Topbar TIme -->
+                    <div class="input-group">
+                        <a class="m-0 font-weight-bold text-primary">
+                                <span id="datetime"></span>
+                                
+                        </a>
+                    </div>
+                   
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            
-                        </li>
-
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="datetime"></span>
-                                
-                            </a>
-                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -139,7 +100,7 @@
 
 
                     <!-- Content Row -->
-
+  
                     <div class="row">
 
                         <!-- Area Chart -->
@@ -219,6 +180,30 @@
                         </div>
                     </div>
 
+
+                    <!-- Content Row -->
+  
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Diagram Batang Perkembangan Covid</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div >
+                                        <canvas  id="chartjs_bar"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -256,7 +241,6 @@
 
     <!-- Page level custom scripts -->
     <script src="./js/js1/demo/chart-area-demo.js"></script>
-    <script src="./js/js1/demo/chart-pie-demo.js"></script>
     <script type="text/javascript">
 
         function GetClock(){
@@ -282,5 +266,53 @@
         setTimeout("GetClock()", 1000);
         }
         window.onload=GetClock;
-        </script>
+
+        var ctx = document.getElementById("chartjs_bar");
+            var chartjs_bar = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+                    datasets: [{
+                            label: 'Jumlah Penduduk Terkena Covid',
+                            data: [<?php while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
+    </script>
+   
 </body>
+
+
+
+
+
+
+
+
+
