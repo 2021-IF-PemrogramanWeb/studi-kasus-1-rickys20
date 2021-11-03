@@ -15,24 +15,17 @@ $result = mysqli_query($db_connection, $sql);
 $count = mysqli_num_rows($result);
 // If theres one record carry one
 if ($count == 1) {
-  // Convert DB result array into text
-  while ($row = mysqli_fetch_array($result)) {
-    // Assigning variable to password record
-    $dbPass = $row['password'];
-  }
-  // Verifying password
-  if (password_verify($password, $dbPass)==0) {
-    $_SESSION['login'] = $email;
-    header("location: index.html");
-  } else {
-    header("location: login.html");
-  }
+    // Convert DB result array into text
+    while ($row = mysqli_fetch_array($result)) {
+      // Assigning variable to password record
+      $dbPass = $row['password'];
+    }
+    // Verifying password
+    if (password_verify($password, $dbPass)==0) {
+      $_SESSION['login'] = $email;
+      header("location: index.php");
+    } else {
+      header("location: login.html");
+    }
 }
-
-
-
-
-
-
-
- ?>
+?>
