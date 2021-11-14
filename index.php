@@ -1,10 +1,7 @@
 <?php 
-ob_start();
 session_start();
 if(!isset($_SESSION['login'])){
-    die("<b>Oops!</b> Access Failed.
-        <p>Sistem Logout. Anda harus melakukan Login kembali.</p>
-        <button type='button' onclick=location.href='./'>Back</button>");
+    header("location: error.html");
 }
 include ('config.php'); ?>
 <!DOCTYPE html>
@@ -90,7 +87,7 @@ include ('config.php'); ?>
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
-                                <a class="dropdown-item" href="login.html">
+                                <a class="dropdown-item" href="logout.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -103,6 +100,7 @@ include ('config.php'); ?>
                 </nav>
                 <!-- End of Topbar -->
 
+                
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 

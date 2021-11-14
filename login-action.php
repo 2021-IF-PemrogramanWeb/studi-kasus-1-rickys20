@@ -23,7 +23,7 @@ if ($count == 1) {
     // Verifying password
     if (password_verify($password, $dbPass)==0) {
       $_SESSION['login'] = $email;
-      header("location: index.php");
+      header("location: home.php");
     } else {
       header("location: login.html");
     }
